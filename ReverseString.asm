@@ -26,7 +26,7 @@ display:
 mov ah,02h 
 pop dx
 int 21h
- loop display
- mov ah,4ch
- int 21h
+loop display
+mov ah,4ch
+int 21h
 end
