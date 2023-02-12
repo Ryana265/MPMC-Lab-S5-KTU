@@ -1,57 +1,61 @@
 ASSUME CS:CODE,DS:DATA
 DATA SEGMENT
-MSG1 DB 0ah,'Enter First Number: $'
-MSG2 DB 0ah,'Enter Second Number: $'
-msg3 db 0ah,'The sum is : $'
-data ends
-code segment
-start: mov ax,data
-	mov ds,ax
-	mov dx,offset msg1
-	mov ah,09h
-	int 21h
-	MOV AH,01H
-	INT 21H
-	SUB AL,30H
-	MOV BH,0aH
-	MUL BH
-	MOV BH,AL
-	MOV AH,01H
-	INT 21H
-	SUB AL,30H
-	ADD BH,AL
-	mov BL,BH
-	mov dx,offset msg2
-	mov ah,09h
-	int 21h
-	MOV AH,01H
-	INT 21H
-	SUB AL,30H
-	MOV BH,0aH
-	MUL BH
-	MOV BH,AL
-	MOV AH,01H
-	INT 21H
-	SUB AL,30H
-	ADD BH,AL
-	ADD BH,BL
-	mov dx,offset msg3
-	mov ah,09h
-	int 21h
-	MOV CL,0AH
-	MOV AL,BH
-	MOV AH,00H
-	DIV CL
-	ADD AL,30H
-	MOV DL,AL
-	MOV BL,AH
-	MOV AH,02H
-	INT 21H
-	ADD BL,30H
-	MOV DL,BL
-	MOV AH,02H
-	INT 21H
-	MOV AH,4CH
-	INT 21H
-code ends
-end start
+MSG1 DB 0AH, 'Enter the first number: $'
+MSG2 DB 0AH, 'Enter the second number: $'
+MSG3 DB 0AH, 'The number is: $'
+DATA ENDS
+CODE SEGMENT
+START:
+MOV AX,DATA
+MOV DS,AX
+MOV DX,OFFSET MSG1
+MOV AH,09H
+INT 21H
+MOV AH,01H
+INT 21H
+SUB AL,30H
+MOV BH,0AH
+MUL BH
+MOV BH,AL
+MOV AH,01H
+INT 21H
+SUB AL,30H
+ADD BH,AL
+MOV CH,BH
+
+MOV DX,OFFSET MSG2
+MOV AH,09H
+INT 21H
+MOV AH,01H
+INT 21H
+SUB AL,30H
+MOV BH,0AH
+MUL BH
+MOV BH,AL
+MOV AH,01H
+INT 21H
+SUB AL,30H
+ADD BH,AL
+
+ADD BH,CH
+
+MOV DX,OFFSET MSG3
+MOV AH,09H
+INT 21H
+MOV CL,0AH
+MOV AL,BH
+MOV AH,00H
+DIV CL
+MOV BL,AH
+ADD AL,30H
+MOV DL,AL
+MOV AH,02H
+INT 21H
+ADD BL,30H
+MOV DL,BL
+MOV AH,02H
+INT 21H
+MOV AH,4CH
+INT 21H
+CODE ENDS
+END START
